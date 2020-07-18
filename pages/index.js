@@ -269,3 +269,9 @@ export default function Home() {
     </React.Fragment>
   )
 }
+export async function getInitialProps({Component, ctx}) {
+  const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+
+  //Anything returned here can be access by the client
+  return {pageProps: pageProps};
+}

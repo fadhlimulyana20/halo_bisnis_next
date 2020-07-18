@@ -1,17 +1,42 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import react module
+import { useEffect } from 'react';
+
+// Import Next Module
 import Head from 'next/head';
+
+// Import bootstrap css
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Import project module
 import NavBar from '../components/navbar';
-import { Navbar } from 'react-bootstrap';
-import ModalEx from "../components/modal";
+
+// Import Project CSS
 import '../css/project.css';
+
+// FontAwesome Config
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css' // Import the CSS
 config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
+// react redux module
+import { Provider } from 'react-redux';
 
-export default function App({ Component, pageProps }) {
-    return (
-        <>
+// redux configuration module
+import store from '../redux/store';
+import { loadCart } from '../redux/actions/cart';
+
+// import next redux wrapper
+import withRedux from 'next-redux-wrapper';
+
+
+function App({ Component, pageProps }) {
+  useEffect(() => {
+    store.dispatch(loadCart())
+  });
+
+  return (
+      <>
+        <Provider store={store}>
           <Head>
               <title>HaloBisnis.id</title>
               <link rel="icon" href="/android-icon-192x192.png" />
@@ -28,6 +53,20 @@ export default function App({ Component, pageProps }) {
           </Head>
           <NavBar />
           <Component {...pageProps} />
-        </>
-    )
+        </Provider>
+      </>
+  )
 }
+
+export async function getInitialProps({Component, ctx}) {
+  const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+
+  //Anything returned here can be accessed by the client
+  return {pageProps: pageProps};
+}
+
+//makeStore function that returns a new store for every request
+const makeStore = () => store;
+
+//withRedux wrapper that passes the store to the App Component
+export default withRedux(makeStore)(App);

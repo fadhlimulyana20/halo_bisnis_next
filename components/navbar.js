@@ -1,7 +1,17 @@
 import {Navbar, Nav, Container} from 'react-bootstrap';
+
 import React, { useState } from 'react';
 import useWindowScrollPosition from "@rehooks/window-scroll-position";
+
+// next js module
 import Link from 'next/link';
+
+// project module
+import ActiveLink from './common/activeLink';
+
+// import fontawesome module
+import { FontAwesomeIcon }from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 export default function NavBar(){
   // state
@@ -42,21 +52,27 @@ export default function NavBar(){
                 </Navbar.Brand>
               </a>
             </Link>
-            <Navbar.Collapse>
+            <Navbar.Toggle aria-controls="main-menu" />
+            <Navbar.Collapse id="main-menu">
               <Nav className="ml-auto">
-                  <Link href="/">
-                    <a className="nav-link">
-                      Home
-                    </a>
-                  </Link>
-                  <Link href="/product">
-                    <a className="nav-link">
-                      Produk
-                    </a>
-                  </Link>
-                  <Nav.Link>Layanan</Nav.Link>
-                  <Nav.Link>Tentang</Nav.Link>
-                  <Nav.Link>Sampel</Nav.Link>
+                  <ActiveLink href="/" className="nav-link">
+                    Home
+                  </ActiveLink>
+                  <ActiveLink href="/product" className="nav-link">
+                    Produk
+                  </ActiveLink>
+                  <ActiveLink href="/service" className="nav-link">
+                    Layanan
+                  </ActiveLink>
+                  <ActiveLink href="/about-us" className="nav-link">
+                    Tentang
+                  </ActiveLink>
+                  <ActiveLink href="/sample" className="nav-link">
+                    Sampel
+                  </ActiveLink>
+                  <ActiveLink href="/cart" className="nav-link">
+                    <FontAwesomeIcon icon={faShoppingCart} />
+                  </ActiveLink>
               </Nav>
             </Navbar.Collapse>
           </Container>
