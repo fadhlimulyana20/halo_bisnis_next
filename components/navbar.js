@@ -11,7 +11,7 @@ import ActiveLink from './common/activeLink';
 
 // import fontawesome module
 import { FontAwesomeIcon }from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
 
 export default function NavBar(){
   // state
@@ -72,6 +72,9 @@ export default function NavBar(){
                   </ActiveLink>
                   <ActiveLink href="/cart" className="nav-link">
                     <FontAwesomeIcon icon={faShoppingCart} />
+                  </ActiveLink>
+                  <ActiveLink href="/dashboard" className="nav-link">
+                    <FontAwesomeIcon icon={faUser} />
                   </ActiveLink>
               </Nav>
             </Navbar.Collapse>

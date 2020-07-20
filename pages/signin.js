@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Head from 'next/head';
 import Link from 'next/link';
-import Router from 'next/router';
+import Router, { withRouter } from 'next/router';
 
 import { connect } from 'react-redux';
 
@@ -16,6 +16,8 @@ class Signin extends Component {
 
   componentDidMount(){
     const {isAuthenticated} = this.props.auth;
+    const {query} = this.props.router;
+    console.log(query.next);
 
     if (isAuthenticated) {
       Router.push('/dashboard');
@@ -108,4 +110,4 @@ const MapStateToProp = state =>({
   auth : state.authReducer
 })
 
-export default connect(MapStateToProp, {userLogin})(Signin);
+export default connect(MapStateToProp, {userLogin})(withRouter(Signin));

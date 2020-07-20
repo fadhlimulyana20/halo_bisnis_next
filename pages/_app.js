@@ -24,6 +24,7 @@ import { Provider } from 'react-redux';
 // redux configuration module
 import store from '../redux/store';
 import { loadCart } from '../redux/actions/cart';
+import { userLoad } from '../redux/actions/auth';
 
 // import next redux wrapper
 import withRedux from 'next-redux-wrapper';
@@ -31,7 +32,8 @@ import withRedux from 'next-redux-wrapper';
 
 function App({ Component, pageProps }) {
   useEffect(() => {
-    store.dispatch(loadCart())
+    store.dispatch(loadCart());
+    store.dispatch(userLoad());
   });
 
   return (
