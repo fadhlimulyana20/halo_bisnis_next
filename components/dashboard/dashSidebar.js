@@ -42,20 +42,20 @@ class Sidebar extends Component {
                     </div>
                     <span>Tagihan</span>
                   </SidebarLink>
-                  <SidebarLink href="/dashboard/tema">
+                  <SidebarLink href="/dashboard/theme">
                     <div className="nav-icon">
                       <FontAwesomeIcon icon={faBrush} />
                     </div>
                     <span>Tema</span>
                   </SidebarLink>
-                  <SidebarLink href="/dashboard/tema">
+                  <SidebarLink href="/dashboard/project">
                     <div className="nav-icon">
                       <FontAwesomeIcon icon={faLaptopCode} />
                     </div>
                     <span>Project</span>
                   </SidebarLink>
                   <hr/>
-                  <SidebarLink href="/dashboard/tema">
+                  <SidebarLink href="/dashboard/account">
                     <div className="nav-icon">
                       <FontAwesomeIcon icon={faUser} />
                     </div>

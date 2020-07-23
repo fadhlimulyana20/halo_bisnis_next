@@ -7,17 +7,17 @@ import DashboardContainer from '../../components/dashboard/container';
 import { connect } from 'react-redux';
 
 class Dashboard extends Component {
-  componentDidMount(){
-    // from authReducer
-    const {isAuthenticated} = this.props.auth;
+    // componentDidMount(){
+    //     // from authReducer
+    //     const {isAuthenticated} = this.props.auth;
 
-    if(!isAuthenticated){
-        Router.push({
-          pathname: '/signin',
-          query: {next: '/dashboard'}
-        });
-      }
-    }
+    //     if(!isAuthenticated){
+    //         Router.push({
+    //             pathname: '/signin',
+    //             query: {next: '/dashboard'}
+    //         });
+    //     }
+    // }
 
   render() {
     const { user } = this.props.auth;

@@ -13,8 +13,17 @@ class ProductDetail extends Component {
   componentDidMount(){
     // load product detail by id
     const {query} = this.props.router;
+    console.log(this.props.router);
     this.props.loadProductDetail(query.id);
   }
+
+  static async getInitialProps({Component, ctx}) {
+    const pageProps = Component ? await Component.getInitialProps(ctx) : {};
+  
+    //Anything returned here can be accessed by the client
+    return {pageProps: pageProps};
+  }
+  
 
   render() {
     // Router id
@@ -37,16 +46,16 @@ class ProductDetail extends Component {
                 <div className="col-md-8">
                   {product_detail ? (
                     <img className="w-100 rounded shadow" src={product_detail.cover} />
-                  ) : (
-                    <Skeleton height={500} />
+                  ) : ( ''
+                    // <Skeleton height={500} />
                   )}
                   <div className="d-none d-md-block mt-4">
                     <h5>Deskripsi</h5>
                     {product_detail ? 
                         (<p>
                             {product_detail.description}
-                        </p>):
-                        (<Skeleton count={10}/>)
+                        </p>): ''
+                        // (<Skeleton count={10}/>)
                     }
                   </div>
                 </div>
@@ -72,7 +81,9 @@ class ProductDetail extends Component {
                         </div>
                       </div>
                     </div>
-                    ) : (<Skeleton count={3}/>)}
+                    ) : ( ''
+                    // <Skeleton count={3}/>
+                    )}
                     {/* <div class="form-check mb-2">
                         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"/>
                         <label class="form-check-label" for="exampleRadios1">
@@ -111,11 +122,11 @@ class ProductDetail extends Component {
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span className="font-weight-bold">Rilis</span>
-                        <span className="font-weight-normal">{product_detail.created_at.split("T", 1)}</span>
+                        {/* <span className="font-weight-normal">{product_detail&&product_detail.created_at.split("T", 1)}</span> */}
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span className="font-weight-bold">Update</span>
-                        <span className="font-weight-normal">{product_detail.updated_at.split("T", 1)}</span>
+                        {/* <span className="font-weight-normal">{product_detail&&product_detail.updated_at.split("T", 1)}</span> */}
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span className="font-weight-bold">Versi</span>
@@ -134,8 +145,8 @@ class ProductDetail extends Component {
                         <button className="btn-sm btn-outline-mediumaquamarine rounded-pill">Hubungi Sales</button>
                     </li>
                   </ul>
-                  ):(
-                    <Skeleton count={5} />
+                  ):(''
+                    // <Skeleton count={5} />
                   )}
                 </div>
               </div>
@@ -145,8 +156,8 @@ class ProductDetail extends Component {
                     {product_detail ? 
                         (<p>
                             {product_detail.description}
-                        </p>):
-                        (<Skeleton count={10}/>)
+                        </p>): ''
+                        // (<Skeleton count={10}/>)
                     }
                 </div>
               </div>

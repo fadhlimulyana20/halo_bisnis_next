@@ -36,7 +36,7 @@ class Invoice extends Component {
                             <th scope="row">{index+1}</th>
                             <td>
                                 <Link href={`${path}/${invoice.id}`}>
-                                    {invoice.__str__}
+                                    <a>{invoice.__str__}</a>
                                 </Link>
                             </td>
                             <td>{invoice.created_at}</td>

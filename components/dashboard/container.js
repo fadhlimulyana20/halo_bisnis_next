@@ -4,15 +4,30 @@ import { Container } from 'react-bootstrap'
 
 import Sidebar from './dashSidebar';
 
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+
+import  Router,{ withRouter } from 'next/router';
 
 class DashboardContainer extends Component {
+    componentDidMount(){
+        // from authReducer
+        const {isAuthenticated} = this.props.auth;
+        const { router } = this.props;  
+
+        if(!isAuthenticated){
+            Router.push({
+                pathname: '/signin',
+                query: {next: router.pathname}
+            });
+        }
+    }
+
     render() {
-        const { children, auth } = this.props;
+        const { children, auth, className } = this.props;
 
         return (
             <React.Fragment>
-                <div className="flex-xl-nowrap row mr-0 no-gutters user-area">
+                <div className={`flex-xl-nowrap row mr-0 no-gutters user-area ${className}`}>
                     <div className="col-lg-2 sidebar-field">
                         <Sidebar/>
                     </div>
@@ -42,4 +57,4 @@ const MapStateToProps = state => ({
     auth : state.authReducer
 })
 
-export default connect(MapStateToProps)(DashboardContainer);
+export default connect(MapStateToProps)(withRouter(DashboardContainer));
