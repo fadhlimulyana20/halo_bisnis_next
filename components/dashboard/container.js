@@ -8,22 +8,48 @@ import { connect } from 'react-redux';
 
 import  Router,{ withRouter } from 'next/router';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+
 class DashboardContainer extends Component {
-    componentDidMount(){
+    
+    // componentDidMount(){
+    //     // from authReducer
+    //     const {isAuthenticated} = this.props.auth;
+    //     const { router } = this.props;  
+
+    //     if(!isAuthenticated){
+    //         Router.push({
+    //             pathname: '/signin',
+    //             query: {next: router.pathname}
+    //         });
+    //     }
+    // }
+
+        
+    async componentDidUpdate(){
         // from authReducer
-        const {isAuthenticated} = this.props.auth;
+        const {isAuthenticated, isLoading} = this.props.auth;
         const { router } = this.props;  
 
-        if(!isAuthenticated){
+        if(!isAuthenticated && !isLoading){
             Router.push({
                 pathname: '/signin',
-                query: {next: router.pathname}
+                query: {next: router.asPath}
             });
         }
     }
 
+    static getInitialProps({store}) {
+    }
+
+    handleBackButton = (event) => {
+        event.preventDefault();
+        Router.back();
+    }
+
     render() {
-        const { children, auth, className } = this.props;
+        const { children, auth, className, store } = this.props;
 
         return (
             <React.Fragment>
@@ -36,7 +62,9 @@ class DashboardContainer extends Component {
                             <section className="header-section">
                                 <div className="pt-5">
                                     <div className="d-flex jutify-content-start">
-                                        {/* <BackButton /> */}
+                                        <button className="btn btn-outline-dark rounded-pill" onClick={this.handleBackButton} id="back-button">
+                                            <FontAwesomeIcon icon={faArrowLeft} />
+                                        </button>
                                         <h3 className="ml-2 mb-0 my-auto">Halo, {auth.user ? `${auth.user.first_name}` : ''}</h3>
                                     </div>
                                     <button className="btn-sm btn-secondary sidebar-togle mt-4 rounded-pill px-4" onClick={this.handleClick}>

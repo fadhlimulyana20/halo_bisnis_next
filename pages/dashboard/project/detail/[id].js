@@ -12,19 +12,20 @@ import DashboardContainer from '../../../../components/dashboard/container';
 
 class ProjectDetailComponent extends Component {
     state = {  }
-
-    componentDidMount(){
-        const { query } = this.props.router;
-        const id = query.id;
-        this.props.loadProjectDetail(id);
-    }
-
+    
     static async getInitialProps({Component, ctx}) {
         const pageProps = Component ? await Component.getInitialProps(ctx) : {};
       
         //Anything returned here can be accessed by the client
         return {pageProps: pageProps};
     }
+    
+    componentDidMount(){
+        const { query } = this.props.router;
+        const id = query.id;
+        // this.props.loadProjectDetail(id);
+    }
+
 
 
     render() {

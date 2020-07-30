@@ -93,7 +93,7 @@ class UserAccountComponent extends Component {
                                     </h6>
                             </div>
                             <div className="d-flex justify-content-between text-secondary">
-                                <h6 className="font-weight-normal mr-2">Loyality Points <span class="badge-pill badge-primary">{auth.user ? `${auth.user.profile.loyal_point}` : ''}</span></h6>
+                                <h6 className="font-weight-normal mr-2">Loyality Points <span className="badge-pill badge-primary">{auth.user ? `${auth.user.profile.loyal_point}` : ''}</span></h6>
                             </div>
                         </div>
                         <hr/>

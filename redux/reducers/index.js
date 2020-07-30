@@ -7,6 +7,7 @@ import projectReducer from './projectReducer';
 import cartReducer from './cartReducer';
 import serviceReducer from './serviceReducer';
 import paymentReducer from './paymentReducer';
+// import hydrateRecuder from './hydrate';
 
 export default combineReducers({
     productReducer,

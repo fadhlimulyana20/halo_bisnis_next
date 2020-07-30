@@ -10,19 +10,22 @@ import { invoiceDetailLoad } from '../../../redux/actions/invoice';
 import DashboardContainer from '../../../components/dashboard/container';
 
 class InvoiceDetailComponent extends Component {
-    componentDidMount(){
-        const { query } = this.props.router;
+    static async getInitialProps({Component, ctx, store}) {
+        const pageProps = Component ? await Component.getInitialProps(ctx) : {};
+        // console.log(router);
+      
+        //Anything returned here can be accessed by the client
+        return {pageProps: pageProps, store};
+    }
 
+    
+    
+    async componentDidMount(){
+        const { query } = this.props.router;
         this.props.invoiceDetailLoad(query.id);
     }
 
-    static async getInitialProps({Component, ctx}) {
-        const pageProps = Component ? await Component.getInitialProps(ctx) : {};
-      
-        //Anything returned here can be accessed by the client
-        return {pageProps: pageProps};
-    }
-
+    
     render() { 
         const {invoice} = this.props;
         const invoice_detail = invoice.invoice_detail;
@@ -129,10 +132,10 @@ class InvoiceDetailComponent extends Component {
                             </div>
                             <div className="mt-4 row no-gutters">
                                 <div className="col-8 ml-auto text-right">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Sub Total : {sub_total}</li>
-                                        <li class="list-group-item">Diskon Total : {discount_total}</li>
-                                        <li class="list-group-item">
+                                    <ul className="list-group list-group-flush">
+                                        <li className="list-group-item">Sub Total : {sub_total}</li>
+                                        <li className="list-group-item">Diskon Total : {discount_total}</li>
+                                        <li className="list-group-item">
                                             <span className="badge-pill badge-secondary">
                                                 Total : Rp. {grand_total}
                                             </span>
@@ -147,7 +150,7 @@ class InvoiceDetailComponent extends Component {
                         <div className="col-md-8 mx-auto">
                             <div className="row">
                                 <div className="col-6 mx-auto">
-                                    <Link href={`/dashboard/payment/confirm/invoice=${invoice_detail ? invoice_detail.id : ''}`}>
+                                    <Link href={`/dashboard/payment/confirm/${invoice_detail ? invoice_detail.id : ''}`}>
                                         <a className="btn btn-secondary btn-block py-2 rounded-pill font-weight-bold">
                                             Bayar
                                         </a>

@@ -25,6 +25,9 @@ class ProductDetail extends Component {
   }
   
 
+  // static getInitialProps({store}) {}
+  
+
   render() {
     // Router id
     const { router } = this.props;

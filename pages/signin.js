@@ -19,16 +19,23 @@ class Signin extends Component {
     const {query} = this.props.router;
     console.log(query.next);
 
-    if (isAuthenticated) {
-      Router.push('/dashboard');
+    if (isAuthenticated && query.next) {
+      Router.push(query.next);
+    }else if (isAuthenticated){
+      Router.push(query.next);
     }
   }
 
   componentDidUpdate(){
     const {isAuthenticated} = this.props.auth; 
 
-    if (isAuthenticated) {
-      Router.push('/dashboard');
+    const {query} = this.props.router;
+    console.log(query.next);
+
+    if (isAuthenticated && query.next) {
+      Router.push(query.next);
+    }else if (isAuthenticated){
+      Router.push(query.next);
     }
   }
 

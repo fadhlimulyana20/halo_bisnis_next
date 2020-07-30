@@ -66,7 +66,7 @@ class ChangeEmail extends Component {
         
         const {update_user, user} = nextProps.auth;
         const status = update_user ? update_user.status : '';
-        console.log(status);
+        console.log(nextProps);
 
         if(status && status === 400){
             this.setState({message : wrong_password})

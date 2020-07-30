@@ -16,7 +16,8 @@ import { FooterLg } from '../components/footer';
 // import react-scroll module
 import { Link as ScrollLink } from 'react-scroll';
 
-export default function Home() {
+export default function Home({store}) {
+  console.log(store);
   return (
     <React.Fragment>
       <Head>
@@ -269,9 +270,4 @@ export default function Home() {
     </React.Fragment>
   )
 }
-export async function getInitialProps({Component, ctx}) {
-  const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
-
-  //Anything returned here can be access by the client
-  return {pageProps: pageProps};
-}
+export function getInitialProps({store}) {}

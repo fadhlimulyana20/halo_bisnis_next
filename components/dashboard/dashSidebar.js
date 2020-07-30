@@ -5,12 +5,21 @@ import SidebarLink from '../common/sidebarLink';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faFileInvoice, faBrush, faLaptopCode, faUser, faMoneyBill, faPowerOff} from '@fortawesome/free-solid-svg-icons';
 
+
+import { userLogout } from '../../redux/actions/auth';
+import store from '../../redux/store';
+
 class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {  
       display : false,
     };
+  }
+
+  handleLogOut = event => {
+    event.preventDefault();
+    store.dispatch(userLogout());
   }
 
   render() {
@@ -61,18 +70,18 @@ class Sidebar extends Component {
                     </div>
                     <span>Akun</span>
                   </SidebarLink>
-                  <SidebarLink href="/dashboard/tema">
+                  <SidebarLink href="/dashboard/payment">
                     <div className="nav-icon">
                       <FontAwesomeIcon icon={faMoneyBill} />
                     </div>
                     <span>Pembayaran</span>
                   </SidebarLink>
-                  <SidebarLink href="/dashboard/">
+                  <a href="" className="nav-link d-flex justify-content-start rounded-pill" onClick={this.handleLogOut}>
                     <div className="nav-icon">
                       <FontAwesomeIcon icon={faPowerOff} />
                     </div>
                     <span>Keluar</span>
-                  </SidebarLink>
+                  </a>
                 </li>
               </ul>
             </div>
